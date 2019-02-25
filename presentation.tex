@@ -81,6 +81,7 @@
 
 \section{Komplexitätsklassen}
 \begin{frame}{Komplexitätsklassen}
+\textbf{Definition:} \(\leq_p\) "ordnet" Entscheidungsprobleme bezüglich ihrer Komplexität.\\
 Aufsteigende Komplexitätsklassen:
 \begin{enumerate}
 \item P - polynomiell lösbar
@@ -150,10 +151,36 @@ In einem ungerichteten Graphen $G = (V,E)$ bildet die Knotenmenge $V` \subseteq 
 
 \subsection{Beweis}
 \begin{frame}{Clique - Beweis}
-Beweis
+Es wurde bereits bewiesen, dass \(CLIQUE \in NP\) und \(SAT\) NP-vollständig ist.\\
+Nun ist zu beweisen, dass \(SAT \leq_p CLIQUE\).\\
+Daraus folgt: \(Clique\) ist NP-vollständig.
 \end{frame}
 
+\begin{frame}{Clique - Beweis}
+Konstruiere einen Graphen, der mittels \(Clique\) ein Problem löst, welches ein \(SAT\)-Problem ist.
+\begin{enumerate}
+\item Füge für jedes Literal in den Klauseln einen Knoten hinzu.
+\pause
+\item Verbinde alle Literale außer folgende Kanten:
+\begin{itemize}
+\item Klauselgruppen untereinander
+\item Gegensätzliche Literale (z.B. \(x_1\) und \(\overline{x_1}\))
+\end{itemize}
+\item Suche eine Clique der Größe k, k ist die Anzahl der Klauseln. Da die Knoten einer Klauselgruppe nicht verbunden sind, muss aus jeder Klausel ein Literal ``wahr'' sein. Da die Literale in den Klauseln ODER-verknüpft sind, sind alle Klauseln erfüllt.\\
+\end{enumerate}
+\end{frame}
 
+\begin{frame}{Clique - Beweis}
+\begin{figure}
+\includegraphics[width=9cm]{figures/clique_sat}
+\caption{Graph nach Transformation von Clique- in SAT-Problem}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Clique - Beweis}
+\textrightarrow \(SAT\)-Probleme können in ein \(Clique\)-Problem transferiert werden (mit polynomialen Zeitaufwand).\\
+\textrightarrow \(Clique\) ist NP-vollständig.
+\end{frame}
 
 \section{Knapsack Problem}
 \begin{frame}{Knapsack Problem}
