@@ -79,11 +79,47 @@
 %Beweis
 %\end{frame}
 
+\section{Komplexitätsklassen}
+\begin{frame}{Komplexitätsklassen}
+Aufsteigende Komplexitätsklassen:
+\begin{enumerate}
+\item P - polynomiell lösbar
+\pause
+\item NP - nichtdeterministisch polynomiell lösbar
+\pause
+\item NP-schwierig\\
+\textrightarrow \(\forall L` \in NP: L` \leq_p L\)
+\pause
+\item NP-vollständig\\
+\textrightarrow \(L \in NP\) und \(\forall L` \in NP: L` \leq_p L\)\\
+\pause
+\textrightarrow Alle folgenden Probleme sind NP-vollständig
+\pause
+\item nicht rekursiv
+\end{enumerate}
+\end{frame}
 
+\section{Satisfiability Problem (SAT)}
+\begin{frame}{Satisfiability Problem}
+Für natürliche Zahlen \(n\) und \(m\) seien \(m\) Klauseln über \(n\) Variablen gegeben.
+Eine Klausel ist die Disjunktion [Veroderung] von einigen Literalen \(x_i\) bzw. \(\overline{x_i}\) mit \(i,j \in \{1,...,n\}\). Es soll entschieden werden, ob es eine Belegung \(a = \{a_1,...,a_n\} \in \{0,1\}^n\) der Variablen \(x_1,...,x_n\) gibt, so dass alle Klauseln erfüllt sind.\\
+\pause
+\textbf{Fragestellung:} Existiert eine Wahrheitsbelegung der Variablen \(x_1,...,x_n\), so dass alle Klauseln erfüllt sind?\\
+\pause
+\textrightarrow Satz von Cook: SAT is NP-vollständig
+\end{frame}
 
-\section{Clique}
-\subsection{Problem}
-\begin{frame}{Problem}
+\subsection{3-SAT}
+\begin{frame}{3-SAT}
+\begin{itemize}
+\item Spezialfall von SAT
+\item Jede Klausel enthält 3 Literale
+\item Es wurde bewiesen, dass SAT durch 3-SAT abbildbar und damit gleich komplex (NP-vollständig) ist
+\end{itemize}
+\end{frame}
+
+\section{Clique Problem}
+\begin{frame}{Clique Problem}
 In einem ungerichteten Graphen $G = (V,E)$ bildet die Knotenmenge $V` \subseteq V$ eine Clique, wenn für alle $v, v` \in V`$ gilt ${v,v`} \in E$. \cite{wegener}
 \pause
 \begin{figure}
@@ -92,14 +128,14 @@ In einem ungerichteten Graphen $G = (V,E)$ bildet die Knotenmenge $V` \subseteq 
 \end{figure}
 \end{frame}
 
-\begin{frame}{Beispiel}
+\begin{frame}{Clique - Beispiel}
 \begin{figure}
 \includegraphics[width=6cm]{figures/clique2.png}
 \caption{Ein Graph mit 2 Cliquen der Größe 4.\newline \newline \tiny Quelle: https://en.wikipedia.org/wiki/Clique\_(graph\_theory)\#/media/File:VR\_complex.svg}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Fragestellungen}
+\begin{frame}{Clique - Fragestellungen}
 \begin{enumerate}
 \item Gibt es eine Clique der Größe k?\\
 \textrightarrow Entscheidungsproblem
@@ -113,15 +149,14 @@ In einem ungerichteten Graphen $G = (V,E)$ bildet die Knotenmenge $V` \subseteq 
 \end{frame}
 
 \subsection{Beweis}
-\begin{frame}{CLIQUE Beweis}
+\begin{frame}{Clique - Beweis}
 Beweis
 \end{frame}
 
 
 
 \section{Knapsack Problem}
-\subsection{Problem}
-\begin{frame}{Problem}
+\begin{frame}{Knapsack Problem}
 Gegeben sind ein Rucksack und \(n\) Objekte mit Gewichten \(g_1,...,g_n \in \mathbb{N}\) sowie eine Gewichtsschranke \(G\).
 Zusätzlich seien \(a_1,...,a_n \in \mathbb{N}\) die Nutzenwerte für die Objekte. \cite{wegener}
 \pause
@@ -131,7 +166,7 @@ Zusätzlich seien \(a_1,...,a_n \in \mathbb{N}\) die Nutzenwerte für die Objekt
 \end{figure}
 \end{frame}
 
-\begin{frame}{Fragestellungen}
+\begin{frame}{Knapsack - Fragestellungen}
 \begin{enumerate}
 \item Gibt es - unter Beachtung des Limits - eine Beladung mit mindestens diesem Nutzwert?\\
 \textrightarrow Entscheidungsproblem
@@ -145,20 +180,20 @@ Zusätzlich seien \(a_1,...,a_n \in \mathbb{N}\) die Nutzenwerte für die Objekt
 \end{frame}
 
 \subsection{Beweis}
-\begin{frame}{Beweis}
+\begin{frame}{Knapsack - Beweis}
 Beweis
 \end{frame}
 
 
 
-\section{PARTITION}
-\subsection{Problem}
-\begin{frame}{PARTITION Problem}
-Problem
+\section{Partition Problem}
+\begin{frame}{Partition Problem}
+Gegeben sind \(b_1,...,b_n \in \mathbb{N}\). Gibt es eine Teilmenge \(I \subseteq \{1,...,n\}\), so dass die Summe aller \(b_i, i \in I\) gleich der Summe aller \(b_i, i \notin I\) ist?\\
+\textrightarrow Teil eine Menge von Gewichten in 2 gleich schwere Haufen auf.
 \end{frame}
 
 \subsection{Beweis}
-\begin{frame}{PARTITION Beweis}
+\begin{frame}{Partition - Beweis}
 Beweis
 \end{frame}
 
