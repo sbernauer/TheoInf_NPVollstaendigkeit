@@ -81,7 +81,7 @@
 
 \section{Komplexitätsklassen}
 \begin{frame}{Komplexitätsklassen}
-\textbf{Definition:} \(\leq_p\) "ordnet" Entscheidungsprobleme bezüglich ihrer Komplexität.\\
+\textbf{Definition:} \(\leq_p\) ``ordnet'' Entscheidungsprobleme bezüglich ihrer Komplexität.\\
 Aufsteigende Komplexitätsklassen:
 \begin{enumerate}
 \item P - polynomiell lösbar
@@ -115,7 +115,36 @@ Eine Klausel ist die Disjunktion [Veroderung] von einigen Literalen \(x_i\) bzw.
 \begin{itemize}
 \item Spezialfall von SAT
 \item Jede Klausel enthält 3 Literale
-\item Es wurde bewiesen, dass SAT durch 3-SAT abbildbar und damit gleich komplex (NP-vollständig) ist
+\item Zu Beweisen: SAT ist durch 3-SAT abbildbar und beide sind damit gleich komplex (NP-vollständig)
+\end{itemize}
+\end{frame}
+
+\subsection{Beweis: 3-SAT $\leq_p$ SAT}
+\begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+\begin{itemize}
+\item Klausel 1 Literal  \(z\) \\ \textrightarrow \(z \vee z \vee z\)
+\item Klausel 2 Literale \(z \vee y\) \\ \textrightarrow \(z \vee z \vee y\)
+\item Klausel 3 Literale \(z \vee y \vee z\) \\ \textrightarrow Keine Änderung
+\item Klausel \(\ge\) 4 Literale \(z_1 \vee ... \vee z_k\) \\ \textrightarrow siehe nächste Folie
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+Beispiel: \(k = 7\) mit \(z_1 \vee ... \vee z_k\):
+\begin{itemize}
+\item \(z_1 \vee z_2 \vee y_1\)
+\item \(\overline{y_1} \vee z_3 \vee y_2\)
+\item \(\overline{y_2} \vee z_4 \vee y_3\)
+\item \(\overline{y_3} \vee z_5 \vee y_4\)
+\item \(\overline{y_4} \vee z_6 \vee z_7\)\\
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+\begin{itemize}
+\item SAT lässt sich durch 3-SAT abbilden
+\item 3-SAT \(\leq_p\) SAT
+\item 3-SAT ist NP-vollständig
 \end{itemize}
 \end{frame}
 
@@ -151,8 +180,38 @@ In einem ungerichteten Graphen $G = (V,E)$ bildet die Knotenmenge $V` \subseteq 
 
 \subsection{Beweis}
 \begin{frame}{Clique - Beweis}
-Es wurde bereits bewiesen, dass \(CLIQUE \in NP\) und \(SAT\) NP-vollständig ist.\\
-Nun ist zu beweisen, dass \(SAT \leq_p CLIQUE\).\\
+Clique ist in NP enthalten.\\
+Beweis:\\
+\begin{enumerate}
+\item NTM zählt Anzahl \(n\) der Knoten im Graphen
+\pause
+\item Rät Wort \(w \in \{0,1\}^n\)
+\pause
+\item Das Wort wird als Knotenauswahl interpretiert, \(V'\) enthält alle Knoten \(i\) mit \(w_i = 1\)
+\pause
+\item Es wird getestet, ob
+\begin{enumerate}
+\item \(V'\) genau \(k\) Knoten beinhaltet.
+\item \(G\) eine Clique auf \(V'\) enthält
+\end{enumerate}
+\end{enumerate}
+\pause
+\begin{itemize}
+\item Rechenaufwand ist polynomiell in der Knotenzahl \(n\)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Clique - Beweis}
+\begin{itemize}
+\item NTM können durch DTM abgebildet werden
+\item Polynomielle Laufzeit + Nichtdeterminismus => NP
+\item Clique ist in NP enthalten
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Clique - Beweis}
+Es wurde bereits bewiesen, dass \(Clique \in NP\) und \(SAT\) (und \(3-SAT\)) NP-vollständig ist.\\
+Nun ist zu beweisen, dass \(SAT \leq_p Clique\).\\
 Daraus folgt: \(Clique\) ist NP-vollständig.
 \end{frame}
 
@@ -166,6 +225,7 @@ Konstruiere einen Graphen, der mittels \(Clique\) ein Problem löst, welches ein
 \item Klauselgruppen untereinander
 \item Gegensätzliche Literale (z.B. \(x_1\) und \(\overline{x_1}\))
 \end{itemize}
+\pause
 \item Suche eine Clique der Größe k, k ist die Anzahl der Klauseln. Da die Knoten einer Klauselgruppe nicht verbunden sind, muss aus jeder Klausel ein Literal ``wahr'' sein. Da die Literale in den Klauseln ODER-verknüpft sind, sind alle Klauseln erfüllt.\\
 \end{enumerate}
 \end{frame}
@@ -221,58 +281,72 @@ Gegeben sind \(b_1,...,b_n \in \mathbb{N}\). Gibt es eine Teilmenge \(I \subsete
 
 \subsection{Beweis}
 \begin{frame}{Partition - Beweis}
-Beweis
+Es wurde bereits bewiesen, dass ein spezielles Knapsack Problem \(KP\mbox{*}\) NP-vollständig ist.\\
+(Für \(a_1,...,a_n\) soll entschieden werden, ob es eine Auswahl gibt, so dass die Summe genau \(A\) beträgt).\\
+Nun ist zu beweisen, dass \(KP\mbox{*} \leq_p PARTITION\).\\
+Daraus folgt: \(PARTITION\) ist NP-vollständig.
 \end{frame}
 
-
-
-\section{BP}
-\subsection{Problem}
-\begin{frame}{BP Problem}
-Problem
+\begin{frame}{Partition - Beweis}
+Sei \((a_1,...,a_n,A)\) eine Eingabe für \(KP\mbox{*}\).\\
+Daraus konstruieren wir in polynomieller Zeit die Eingabe\\
+\((a_1,...,a_n,S-A+1,A+1)\) für \(PARTITION\), wobei \(S\) die Summe aller \(a_i\) ist.\\
+Falls \(I\) eine Lösung für das \(KP\) ist, erhalten wir mit \(I \cup \{n+1\}\) eine Lösung für \(PARTITION\), da\\
+$$\sum_{i \in I}a_i + S - A + 1 = S + 1 = \sum_{1 \le i \le n}a_i + 1 = \sum_{i \notin I}a_i + A + 1$$\\
+Sie Summe aller Zahlen in der Eingabe für \(PARTITION\) beträgt \(2S + 2\).
+Ein Lösung für \(PARTITION\) muss also so aussehen, dass jeder Teil sich zu \(S + 1\) aufsummiert.
+Damit müssen die Zahlen \(S - A + 1\) und \(A + 1\) in verschiedenen Teilen sein.
+\((S - A + 1) + (A + 1) = (S + 2) > (S + 1)\)
+Die Zahlen, die \(S - A + 1\) zu \(S + 1\) ergänzen, haben die Summe \(A\) und bilden eine Lösung für die Eingabe von \(KP\mbox{*}\).
 \end{frame}
 
-\subsection{Beweis}
-\begin{frame}{BP Beweis}
-Beweis
-\end{frame}
+%\section{BP}
+%\subsection{Problem}
+%\begin{frame}{BP Problem}
+%Problem
+%\end{frame}
+%
+%\subsection{Beweis}
+%\begin{frame}{BP Beweis}
+%Beweis
+%\end{frame}
 
 
 
-\section{DHC}
-\subsection{Problem}
-\begin{frame}{DHC Problem}
-Problem
-\end{frame}
-
-\subsection{Beweis}
-\begin{frame}{DHC Beweis}
-Beweis
-\end{frame}
-
-
-\section{HC}
-\subsection{Problem}
-\begin{frame}{HC Problem}
-Problem
-\end{frame}
-
-\subsection{Beweis}
-\begin{frame}{HC Beweis}
-Beweis
-\end{frame}
+%\section{DHC}
+%\subsection{Problem}
+%\begin{frame}{DHC Problem}
+%Problem
+%\end{frame}
+%
+%\subsection{Beweis}
+%\begin{frame}{DHC Beweis}
+%Beweis
+%\end{frame}
 
 
-\section{TSP}
-\subsection{Problem}
-\begin{frame}{TSP Problem}
-Problem
-\end{frame}
+%\section{HC}
+%\subsection{Problem}
+%\begin{frame}{HC Problem}
+%Problem
+%\end{frame}
+%
+%\subsection{Beweis}
+%\begin{frame}{HC Beweis}
+%Beweis
+%\end{frame}
 
-\subsection{Beweis}
-\begin{frame}{TSP Beweis}
-Beweis
-\end{frame}
+
+%\section{TSP}
+%\subsection{Problem}
+%\begin{frame}{TSP Problem}
+%Problem
+%\end{frame}
+%
+%\subsection{Beweis}
+%\begin{frame}{TSP Beweis}
+%Beweis
+%\end{frame}
 
 \begin{frame}{Quellen}
 \printbibliography
