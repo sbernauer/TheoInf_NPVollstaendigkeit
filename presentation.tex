@@ -88,13 +88,13 @@ Aufsteigende Komplexitätsklassen:
 \pause
 \item NP - nichtdeterministisch polynomiell lösbar
 \pause
-\item NP-schwierig\\
-\textrightarrow \(\forall L` \in NP: L` \leq_p L\)
-\pause
 \item NP-vollständig\\
 \textrightarrow \(L \in NP\) und \(\forall L` \in NP: L` \leq_p L\)\\
 \pause
 \textrightarrow Alle folgenden Probleme sind NP-vollständig
+\pause
+\item NP-schwierig\\
+\textrightarrow \(\forall L` \in NP: L` \leq_p L\)
 \pause
 \item nicht rekursiv
 \end{enumerate}
@@ -203,9 +203,9 @@ Beweis:\\
 
 \begin{frame}{Clique - Beweis}
 \begin{itemize}
-\item NTM können durch DTM abgebildet werden
-\item Polynomielle Laufzeit + Nichtdeterminismus => NP
-\item Clique ist in NP enthalten
+\item Es wurde bereits bewiesen: NTM können durch DTM abgebildet werden
+\item Polynomielle Laufzeit + Nichtdeterminismus \textrightarrow NP
+\item Daraus folgt: Clique ist in NP enthalten
 \end{itemize}
 \end{frame}
 
@@ -238,8 +238,11 @@ Konstruiere einen Graphen, der mittels \(Clique\) ein Problem löst, welches ein
 \end{frame}
 
 \begin{frame}{Clique - Beweis}
-\textrightarrow \(SAT\)-Probleme können in ein \(Clique\)-Problem transferiert werden (mit polynomialen Zeitaufwand).\\
-\textrightarrow \(Clique\) ist NP-vollständig.
+\begin{itemize}
+\item \(SAT\)-Probleme können in ein \(Clique\)-Problem transferiert werden (mit polynomialen Zeitaufwand).\\
+\item \(SAT \leq_p Clique\)\\
+\item \(Clique\) ist NP-vollständig.
+\end{itemize}
 \end{frame}
 
 \section{Knapsack Problem}
@@ -268,7 +271,9 @@ Zusätzlich seien \(a_1,...,a_n \in \mathbb{N}\) die Nutzenwerte für die Objekt
 
 \subsection{Beweis}
 \begin{frame}{Knapsack - Beweis}
-Beweis
+Der Beweis sei an dieser Stelle vorausgesetzt.
+Es wird bewiesen, dass 3-SAT \(\le_p\) KP ist.\\
+Für Interessierte ist er unter \cite{wegener} im Kapitel 3.4.3 auf Seite 55 zu finden.
 \end{frame}
 
 
@@ -281,7 +286,7 @@ Gegeben sind \(b_1,...,b_n \in \mathbb{N}\). Gibt es eine Teilmenge \(I \subsete
 
 \subsection{Beweis}
 \begin{frame}{Partition - Beweis}
-Es wurde bereits bewiesen, dass ein spezielles Knapsack Problem \(KP\mbox{*}\) NP-vollständig ist.\\
+Es wurde bereits bewiesen, dass ein (spezielles) Knapsack Problem \(KP\mbox{*}\) NP-vollständig ist.\\
 (Für \(a_1,...,a_n\) soll entschieden werden, ob es eine Auswahl gibt, so dass die Summe genau \(A\) beträgt).\\
 Nun ist zu beweisen, dass \(KP\mbox{*} \leq_p PARTITION\).\\
 Daraus folgt: \(PARTITION\) ist NP-vollständig.
