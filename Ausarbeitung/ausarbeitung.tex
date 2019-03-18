@@ -4,11 +4,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
 %\usepackage{ngerman}
+\usepackage{hyperref}
 \usepackage{hhline}
 \usepackage{varioref}
 \usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{amssymb}
+\usepackage{amsmath}
 
 \usepackage[
         hyperref=true,          % Klickbare Referenzen in der PDF-Datei
@@ -156,9 +159,9 @@ Es gibt für die meisten Probleme 3 Fragestellungen, diese sind in Tabelle \vref
 \end{table}
 Für das Clique-Problem gibt es die folgenden 3 Fragestellungen:
 \begin{enumerate}
-\item Entscheidungsproblem: Gibt es eine Clique der Größe k?\\
-\item Werteproblem: Berechne das größte k, so dass eine Clique der Größe k vorhanden ist.\\
-\item Optimierungsproblem: Berechne eine Clique mit dem größten k.\\
+\item \textbf{Entscheidungsproblem}: Gibt es eine Clique der Größe k?\\
+\item \textbf{Werteproblem}: Berechne das größte k, so dass eine Clique der Größe k vorhanden ist.\\
+\item \textbf{Optimierungsproblem}: Berechne eine Clique mit dem größten k.\\
 \end{enumerate}
 
 \subsection{Beweis: Clique ist NP-vollständig}
@@ -199,8 +202,9 @@ Dadurch wird das SAT-Problem in ein Clique-Problem transferiert.
 Da die Knoten einer Klauselgruppe nicht verbunden sind, muss aus jeder Klausel ein Literal ``wahr'' sein.
 Da die Literale in den Klauseln ODER-verknüpft sind, sind alle Klauseln erfüllt.\\
 \end{enumerate}
-In Abbildung \vref{fig:Clique_Sat} ist ein beispielhaftes SAT-Problem als Clique-Graph dargestellt.\\
-Der Beweis wurde \cite{weitz} entnommen.
+In Abbildung \vref{fig:Clique_Sat} ist ein beispielhaftes SAT-Problem als Clique-Graph dargestellt.
+Der Graph wurde nach den oben genannten Regeln erstellt.
+Der Beweis wurde \cite{weitz} entnommen.\\
 Die Transformation von SAT in Clique (Schritte 1 + 2) findet in polynomieller Zeit statt, weshalb gilt: SAT $\le_p$ Clique.\\
 Damit ist bewiesen: Clique ist NP-vollständig.
 \begin{figure}[H]
@@ -209,6 +213,61 @@ Damit ist bewiesen: Clique ist NP-vollständig.
 	\caption{Beispielhafte Darstellung SAT-Problem als Clique-Problem}
 	\label{fig:Clique_Sat}
 \end{figure}
+
+\section{Knapsack Problem (KP)}
+\subsection{Problemstellung}
+Gegeben sind ein Rucksack und \(n\) Objekte mit Gewichten \(g_1,...,g_n \in \mathbb{N}\) sowie eine Gewichtsschranke $G$.
+Zusätzlich seien \(a_1,...,a_n \in \mathbb{N}\) die Nutzenwerte für die Objekte.\\
+Eine grafische Darstellung eines Knapsack Problems ist in Abbildung \vref{fig:Knapsack} abgebildet.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{figures/knapsack.png}
+	\caption{Grafische Darstellung eines Knapsack Problems}
+	\label{fig:Knapsacks}
+\end{figure}
+
+\subsection{Fragestellungen}
+Bei dem KP-Problem gibt es die folgenden 3 Fragestellungen:
+\begin{enumerate}
+\item \textbf{Entscheidungsproblem}: Gibt es - unter Beachtung des Gewichtslimits - eine Beladung mit mindestens diesem Nutzwert?\\
+\item \textbf{Werteproblem}: Berechne den größtmöglichen Nutzwert x.\\
+\item \textbf{Optimierungsproblem}: Berechne die optimale Beladung.\\
+\end{enumerate}
+
+\subsection{KP ist NP-vollständig}
+\label{sec:BeweisKP}
+Der Beweis sei an dieser Stelle vorausgesetzt.
+Es wird bewiesen, dass 3-SAT \(\le_p\) KP ist.\\
+Für Interessierte ist er unter \cite{wegener} im Kapitel 3.4.3 auf Seite 55 zu finden.
+Der Beweis, dass KP NP-vollständig ist wichtig, da in dem nächsten Beweis darauf aufgebaut wird.
+
+\section{Partition Problem}
+\subsection{Problemstellung}
+Gegeben sind \(b_1,...,b_n \in \mathbb{N}\). Gibt es eine Teilmenge \(I \subseteq \{1,...,n\}\), so dass die Summe aller \(b_i, i \in I\) gleich der Summe aller \(b_i, i \notin I\) ist?
+Umgangssprachlich wir versucht, eine Menge von Gewichten in 2 gleich schwere Haufen aufzuteilen.
+
+\subsection{Beweis: Partition ist NP-vollständig}
+Es wurde bereits bewiesen, dass ein (spezielles) Knapsack Problem \(KP\mbox{*}\) NP-vollständig ist. (siehe Kapitel \vref{sec:BeweisKP})\\
+(Für \(a_1,...,a_n\) soll entschieden werden, ob es eine Auswahl gibt, so dass die Summe genau \(A\) beträgt).\\
+Nun ist zu beweisen, dass \(KP\mbox{*} \leq_p PARTITION\).\\
+Daraus würde folgen, dass $PARTITION$ NP-vollständig ist.\\
+Sei \((a_1,...,a_n,A)\) eine Eingabe für \(KP\mbox{*}\).\\
+Daraus konstruieren wir in polynomieller Zeit die Eingabe\\
+\((a_1,...,a_n,S-A+1,A+1)\) für \(PARTITION\), wobei \(S\) die Summe aller \(a_i\) ist.\\
+Falls \(I\) eine Lösung für das \(KP\) ist, erhalten wir mit \(I \cup \{n+1\}\) eine Lösung für \(PARTITION\), da\\
+$$\sum_{i \in I}a_i + S - A + 1 = S + 1 = \sum_{1 \le i \le n}a_i + 1 = \sum_{i \notin I}a_i + A + 1$$\\
+Sie Summe aller Zahlen in der Eingabe für \(PARTITION\) beträgt \(2S + 2\).
+Ein Lösung für \(PARTITION\) muss also so aussehen, dass jeder Teil sich zu \(S + 1\) aufsummiert.
+Damit müssen die Zahlen \(S - A + 1\) und \(A + 1\) in verschiedenen Teilen sein.
+\((S - A + 1) + (A + 1) = (S + 2) > (S + 1)\)
+Die Zahlen, die \(S - A + 1\) zu \(S + 1\) ergänzen, haben die Summe \(A\) und bilden eine Lösung für die Eingabe von \(KP\mbox{*}\).
+Der Beweis wurde \cite{wegener} entnommen.\\
+Damit wurde bewiesen: Partition ist NP-vollständig.
+
+\section{Zusammenfassung}
+Alle behandelten Probleme - SAT, Clique, KP und Partition waren NP-vollständig.
+
 
 \newpage
 \def\refname{Literaturverzeichnis}
