@@ -189,6 +189,7 @@ Es wurde bereits bewiesen, dass NTM durch DTM abgebildet werden können.
 Die polynomielle Laufzeit des Entscheidens, die angegebenen Knoten eine Clique bilden, kombiniert mit dem Nichtdeterminismus ergibt die Problemklasse NP für das Cliquen-Problem.
 
 \subsubsection{Beweis: SAT $\le_p$ Clique}
+\label{sec:SAT_Clique}
 Konstruiere einen Graphen, der mittels \(Clique\) ein Problem löst, welches ein \(SAT\)-Problem ist.
 Dadurch wird das SAT-Problem in ein Clique-Problem transferiert.
 \begin{enumerate}
@@ -267,7 +268,16 @@ Damit wurde bewiesen: Partition ist NP-vollständig.
 
 \section{Zusammenfassung}
 Alle behandelten Probleme - SAT, Clique, KP und Partition waren NP-vollständig.
-
+Als ersten Problem wurde mit dem Satz von Cook das SAT-Problem als NP-vollständig bewiesen.
+Darauf aufbauend wurde das 3-SAT, Clique, KP und Partition-Problem bewiesen.
+Es ist klar erkennbar, wie die Beweise aufeinander aufbauen, und einem so komplexe Beweise wie der Satz von Cook erspart werden, da auf dem Satz aufgebaut werden kann.\\
+Alle genannten Probleme sind NP-vollständig, somit gelten folgende Bedingungen für sie:
+\begin{enumerate}
+\item $L \in NP$
+\item $\forall L` \in NP: L` \leq_p L$
+\end{enumerate}
+Aus der zweiten Bedingung folgert, dass die Probleme (in polynomieller Zeit) in einander umgewandelt werden können.
+Besonders anschaulich passiert dies bei der Umwandlung des SAT in das Clique-Problem in Kapitel \vref{sec:SAT_Clique}.
 
 \newpage
 \def\refname{Literaturverzeichnis}
