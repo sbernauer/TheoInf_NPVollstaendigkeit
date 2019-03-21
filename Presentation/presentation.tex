@@ -69,18 +69,13 @@
 \tableofcontents
 \end{frame}
 
-%\section{3-SAT}
-%\subsection{Problem}
-%\begin{frame}{3-SAT Problem}
-%Problem
-%\end{frame}
-%
-%\subsection{Beweis}
-%\begin{frame}{3-SAT Beweis}
-%Beweis
-%\end{frame}
-
 \section{Komplexitätsklassen}
+\begin{frame}{Komplexitätsklassen}
+Der Operator $L_1\ \le_p L_2$ bedeutet, dass das $L_1$ polynomiell auf $L_2$ reduzierbar ist.
+Dies ist der Fall, wenn es eine polynomielle Transformation von $L_1$ nach $L_2$ gibt, so das heißt, wenn es eine von einer DTM in polynomieller Zeit berechenbare Funktion $f: \sum_1^* \rightarrow \sum_2^*$ gibt, so dass für alle $w \in \sum_1^*$ gilt:
+$$w \in L_1 \leftrightarrow f(w) \in L_2$$
+\end{frame}
+
 \begin{frame}{Komplexitätsklassen}
 \textbf{Definition:} \(\leq_p\) ``ordnet'' Entscheidungsprobleme bezüglich ihrer Komplexität.\\
 Aufsteigende Komplexitätsklassen:
@@ -122,6 +117,7 @@ Eine Klausel ist die Disjunktion [Veroderung] von einigen Literalen \(x_i\) bzw.
 
 \subsection{Beweis: 3-SAT $\leq_p$ SAT}
 \begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+Grundidee: Alle Klauseln des allgemeinen SAT in neue Klauseln der Länge 3 überführen.
 \begin{itemize}
 \item Klausel 1 Literal  \(z\) \\ \textrightarrow \(z \vee z \vee z\)
 \item Klausel 2 Literale \(z \vee y\) \\ \textrightarrow \(z \vee z \vee y\)
@@ -131,7 +127,8 @@ Eine Klausel ist die Disjunktion [Veroderung] von einigen Literalen \(x_i\) bzw.
 \end{frame}
 
 \begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
-Beispiel: \(k = 7\) mit \(z_1 \vee ... \vee z_k\):
+Beispiel: \(k = 7\) Literale mit \(z_1 \vee ... \vee z_k\):\\
+(\(y_1,y_2,y_3,y_4\) sind Hilfsvariablen)
 \begin{itemize}
 \item \(z_1 \vee z_2 \vee y_1\)
 \item \(\overline{y_1} \vee z_3 \vee y_2\)
@@ -139,6 +136,16 @@ Beispiel: \(k = 7\) mit \(z_1 \vee ... \vee z_k\):
 \item \(\overline{y_3} \vee z_5 \vee y_4\)
 \item \(\overline{y_4} \vee z_6 \vee z_7\)\\
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+Allgemein:
+\begin{enumerate}
+\item $z_1 \vee z_2 \vee y_{c,1}$
+\item $\overline{y_{c,l}} \vee z_{l+2} \vee y_{c,l+1}$ für $1 \le l \le k - 4$
+\item $\overline{y_{c,k-3}} \vee z_{k-1} \vee z_k$
+\end{enumerate}
+Index c für separate Hilfsvariablen für jede Klausel
 \end{frame}
 
 \begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
@@ -219,6 +226,14 @@ Beweis:\\
 \end{frame}
 
 \begin{frame}{Clique - Beweis}
+Beweis teilt sich in 2 Teile auf:
+\begin{enumerate}
+\item \textbf{Clique ist in NP enthalten} \checkmark
+\item SAT $\le_p$ Clique
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Clique - Beweis}
 Es wurde bereits bewiesen, dass \(Clique \in NP\) und \(SAT\) (und \(3-SAT\)) NP-vollständig ist.\\
 Nun ist zu beweisen, dass \(SAT \leq_p Clique\).\\
 Daraus folgt: \(Clique\) ist NP-vollständig.
@@ -235,8 +250,18 @@ Konstruiere einen Graphen, der mittels \(Clique\) ein Problem löst, welches ein
 \item Gegensätzliche Literale (z.B. \(x_1\) und \(\overline{x_1}\))
 \end{itemize}
 \pause
-\item Suche eine Clique der Größe k, k ist die Anzahl der Klauseln. Da die Knoten einer Klauselgruppe nicht verbunden sind, muss aus jeder Klausel ein Literal ``wahr'' sein. Da die Literale in den Klauseln ODER-verknüpft sind, sind alle Klauseln erfüllt.\\
+\item Suche eine Clique der Größe k, k ist die Anzahl der Klauseln. Da die Knoten einer Klauselgruppe nicht verbunden sind, muss aus jeder Klausel ein Literal ``wahr'' sein. Da die Literale in den Klauseln ODER-verknüpft sind, sind alle Klauseln erfüllt. \cite{weitz}
 \end{enumerate}
+\end{frame}
+
+\begin{frame}{Clique - Beweis}
+Umformung SAT-Problem zu Clique an der Tafel:
+\begin{itemize}
+\item \(x_1 \vee \overline{x_2} \vee x_3\)
+\item \(\overline{x_1} \vee x_2\)
+\item \(x_3 \vee \overline{x_2}\)
+
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Clique - Beweis}
@@ -309,6 +334,9 @@ Falls \(I\) eine Lösung für das \(KP\) ist, erhalten wir mit \(I \cup \{n+1\}\
 $$\sum_{i \in I}a_i + S - A + 1 = S + 1 = \sum_{1 \le i \le n}a_i + 1 = \sum_{i \notin I}a_i + A + 1$$\\
 Sie Summe aller Zahlen in der Eingabe für \(PARTITION\) beträgt \(2S + 2\).
 Ein Lösung für \(PARTITION\) muss also so aussehen, dass jeder Teil sich zu \(S + 1\) aufsummiert.
+\end{frame}
+
+\begin{frame}{Partition - Beweis}
 Damit müssen die Zahlen \(S - A + 1\) und \(A + 1\) in verschiedenen Teilen sein.
 \((S - A + 1) + (A + 1) = (S + 2) > (S + 1)\)
 Die Zahlen, die \(S - A + 1\) zu \(S + 1\) ergänzen, haben die Summe \(A\) und bilden eine Lösung für die Eingabe von \(KP\mbox{*}\).
