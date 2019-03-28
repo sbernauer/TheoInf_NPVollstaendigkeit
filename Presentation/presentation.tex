@@ -115,8 +115,8 @@ Eine Klausel ist die Disjunktion [Veroderung] von einigen Literalen \(x_i\) bzw.
 \end{itemize}
 \end{frame}
 
-\subsection{Beweis: 3-SAT $\leq_p$ SAT}
-\begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+\subsection{Beweis: SAT $\leq_p$ 3-SAT}
+\begin{frame}{Beweis: SAT \(\leq_p\) 3-SAT}
 Grundidee: Alle Klauseln des allgemeinen SAT in neue Klauseln der Länge 3 überführen.
 \begin{itemize}
 \item Klausel 1 Literal  \(z\) \\ \textrightarrow \(z \vee z \vee z\)
@@ -126,7 +126,7 @@ Grundidee: Alle Klauseln des allgemeinen SAT in neue Klauseln der Länge 3 über
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+\begin{frame}{Beweis: SAT \(\leq_p\) 3-SAT}
 Beispiel: \(k = 7\) Literale mit \(z_1 \vee ... \vee z_k\):\\
 (\(y_1,y_2,y_3,y_4\) sind Hilfsvariablen)
 \begin{itemize}
@@ -138,7 +138,7 @@ Beispiel: \(k = 7\) Literale mit \(z_1 \vee ... \vee z_k\):\\
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+\begin{frame}{Beweis: SAT \(\leq_p\) 3-SAT}
 Allgemein:
 \begin{enumerate}
 \item $z_1 \vee z_2 \vee y_{c,1}$
@@ -148,10 +148,10 @@ Allgemein:
 Index c für separate Hilfsvariablen für jede Klausel
 \end{frame}
 
-\begin{frame}{Beweis: 3-SAT \(\leq_p\) SAT}
+\begin{frame}{Beweis: SAT \(\leq_p\) 3-SAT}
 \begin{itemize}
 \item SAT lässt sich durch 3-SAT abbilden
-\item 3-SAT \(\leq_p\) SAT
+\item SAT \(\leq_p\) 3-SAT
 \item 3-SAT ist NP-vollständig
 \end{itemize}
 \end{frame}
