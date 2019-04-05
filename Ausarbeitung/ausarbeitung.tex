@@ -207,6 +207,13 @@ In Abbildung \vref{fig:Clique_Sat} ist ein beispielhaftes SAT-Problem als Clique
 Der Graph wurde nach den oben genannten Regeln erstellt.
 Der Beweis wurde \cite{weitz} entnommen.\\
 Die Transformation von SAT in Clique (Schritte 1 + 2) findet in polynomieller Zeit statt, weshalb gilt: SAT $\le_p$ Clique.\\
+Damit das SAT in das Clique-Problem polynomiell abbildbar ist muss folgende Bedingung erfüllt sein:
+$$f(w) \in L_2 \leftrightarrow w \in L_1$$
+Wenn das Clique-Problem eine Lösung findet, gibt es eine Lösung für das SAT-Problem. Das bedeutet:
+$$f(w) \in L_2 \rightarrow w \in L_1$$
+Wichtig ist hier der Unterschied, oben die Äquivalenz, unten die Implikation. Damit die Äquivalenz bewiesen ist, muss auch folgenden gelten:
+$$f(w) \notin L_2 \rightarrow w \notin L_1$$
+Da es keine Lösung für das SAT-Problem gibt, wenn das Clique-Problem keine Lösung hat, ist diese Bedingung auch erfüllt.\\
 Damit ist bewiesen: Clique ist NP-vollständig.
 \begin{figure}[H]
 	\centering
@@ -225,7 +232,7 @@ Eine grafische Darstellung eines Knapsack Problems ist in Abbildung \vref{fig:Kn
 	\centering
 	\includegraphics[width=5cm]{figures/knapsack.png}
 	\caption[Grafische Darstellung eines Knapsack Problems]{Grafische Darstellung eines Knapsack Problems. Bildquelle: \cite{knapSackImage1}}
-	\label{fig:Knapsacks}
+	\label{fig:Knapsack}
 \end{figure}
 
 \subsection{Fragestellungen}
