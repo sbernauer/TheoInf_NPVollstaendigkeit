@@ -211,10 +211,14 @@ Damit das SAT in das Clique-Problem polynomiell abbildbar ist muss folgende Bedi
 $$f(w) \in L_2 \leftrightarrow w \in L_1$$
 Wenn das Clique-Problem eine Lösung findet, gibt es eine Lösung für das SAT-Problem. Das bedeutet:
 $$f(w) \in L_2 \rightarrow w \in L_1$$
-Wichtig ist hier der Unterschied, oben die Äquivalenz, unten die Implikation. Damit die Äquivalenz bewiesen ist, muss auch folgenden gelten:
+Wichtig ist hier der Unterschied, in der oberen Formel die Äquivalenz, in der Unteren die Implikation. Damit die Äquivalenz bewiesen ist, muss zusätzlich zu der Implikation auch folgenden gelten:
 $$f(w) \notin L_2 \rightarrow w \notin L_1$$
 Da es keine Lösung für das SAT-Problem gibt, wenn das Clique-Problem keine Lösung hat, ist diese Bedingung auch erfüllt.\\
-Damit ist bewiesen: Clique ist NP-vollständig.
+Damit ist bewiesen: Clique ist NP-vollständig.\\
+\textbf{Anmerkung}:
+Wenn ein Clique gefunden wird, die über ein Literal keine Aussage (ob dieses Literal wahr oder falsch ist) trifft, so ist der Zustand dieses Literals beliebig wählbar, es gibt also mehrere Lösungen.
+Würde in der Abbildung \vref{fig:Clique_Sat} weder $x_3$ noch $\overline{x_3}$ in der Clique enthalten sein, kann $x_3$ entweder wahr oder falsch sein.
+Trotzdem sind alle Klauseln erfüllt.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=7cm]{figures/clique_sat.png}
